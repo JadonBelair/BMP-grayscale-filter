@@ -19,6 +19,7 @@ fn main() {
     let start = data[0x0A];
 
     if num_colors > 0 {
+        
         for cols in 0..num_colors {
             let col_index: usize = OVERHEAD as usize + (4 * cols as usize);
             
@@ -32,6 +33,7 @@ fn main() {
             data[col_index + 1] = grey;
             data[col_index + 2] = grey;
         }
+
     } else {
 
         let width: u32 = data[0x12] as u32 | ((data[0x13] as u32) << 8) | ((data[0x14] as u32) << 16) | ((data[0x15] as u32) << 24);
