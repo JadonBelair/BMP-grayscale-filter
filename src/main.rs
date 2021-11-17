@@ -19,11 +19,17 @@ fn main() {
 
     let mut file = File::open(file_path).unwrap();
 
-
-
     let mut data: Vec<u8> = Vec::new();
 
     file.read_to_end(&mut data).unwrap();
+
+    // grabs bitmap type the first 2 bytes of the file
+    let header_field: u16 = ((data[0x00] as u16) << 8) | (data[0x01] as u16);
+
+    // crashes if the bitmap format isn't the one supported type
+    if header_field != 0x424D {
+        panic!("program does not support this bmp format");
+    }
 
     // finds how many colors are in the file.
     let num_colors: u32 = (data[0x2e] as u32) | ((data[0x2f] as u32) << 8) | ((data[0x30] as u32) << 16) | ((data[0x31] as u32) << 24);
