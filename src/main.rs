@@ -48,7 +48,7 @@ fn main() {
         let row_size = padding + (width * 3);
 
         for row in 0..height {
-            for pix in (start as u32 + ((row_size * row))..(start as u32 + (row_size * row) + row_size)).step_by(3) {
+            for pix in (start as u32 + ((row_size * row))..(start as u32 + (row_size * row) + (width*3))).step_by(3) {
                 let b = data[pix as usize+ 0];
                 let g = data[pix as usize+ 1];
                 let r = data[pix as usize+ 2];
